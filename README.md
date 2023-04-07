@@ -22,7 +22,7 @@ MongoDB for the database
 # Getting started
 To get started with Tasktopus, follow these steps:
 
-Clone the repository to your local machine using 'git clone https://github.com/ainedixon/tasktopus.git'
+Clone the repository to your local machine using 'git clone https://github.com/Aine-dixon/tasktopus.git'
 Navigate to the project directory using 'cd tasktopus'
 Install the required dependencies with 'npm install'
 Start the development server with 'npm run serve'
