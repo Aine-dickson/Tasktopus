@@ -3,7 +3,7 @@
         <section class="header border-b border-b-gray-500 h-full">
             <app_header/>
         </section>
-        <section class="nav hidden sm:block h-full bg-gray-800">
+        <section class="nav h-full bg-gray-800">
             <app_nav/>
         </section>
         <section class="main h-full">
@@ -12,7 +12,7 @@
         <section class="aside hidden sm:block border-l border-l-gray-500 h-full">
             <app_aside/>
         </section>
-        <section class="footer sm:hidden h-full">
+        <section class="footer h-full border-t border-t-gray-500">
             <app_footer/>
         </section>
     </div>
@@ -57,14 +57,31 @@
 .footer{
     grid-area: "footer";
 }
-.app_container{
-    grid-template-columns: 100%;
-    grid-template-rows: 10% 80% 10%;
-    grid-template-areas: "header"
-    "main"
-    "footer";
+@media screen and (max-width: 485px) {
+    .app_container{
+        grid-template-columns: 100%;
+        grid-template-rows: 10% 80% 10%;
+        grid-template-areas: "header"
+        "main"
+        "footer";
+    }
+    .nav{
+        display: none;
+    }
 }
-@media screen and (max-width: 768px)  {
+@media screen and (min-width: 485px) {
+    .app_container{
+        grid-template-columns: 10% 90%;
+        grid-template-rows: 10% 90%;
+        grid-template-areas: 
+        "header header"
+        "nav main";
+    }
+    .footer{
+        display: none;
+    }
+}
+@media screen and (min-width: 640px)  {
     .app_container{
         grid-template-columns: 10% 60% 30%;
         grid-template-rows: 10% 90%;
@@ -75,11 +92,11 @@
 }
 @media screen and (min-width: 768px)  {
     .app_container{
-        grid-template-columns: 15 55% 30%;
+        grid-template-columns: 15% 55% 30%;
         grid-template-rows: 10% 90%;
         grid-template-areas: 
-        "nav nav header header header header header header header aside aside aside"
-        "nav nav main main main main main main main aside aside aside";
+        "nav header aside"
+        "nav main aside";
     }
 }
 </style>

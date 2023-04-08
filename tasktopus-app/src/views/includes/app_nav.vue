@@ -22,7 +22,10 @@
         </nav>
         <nav class="nav-2 h-full p-1 py-8 border-b border-b-gray-200 text-2xl flex flex-col space-y-4">
             <router-link :to="{name: 'home'}">
-                HM
+                <div class="xl:flex space-x-4 items-center">
+                    <span>HM</span>
+                    <span class="hidden xl:inline text-lg">Home</span>
+                </div>
             </router-link>
             <router-link :to="{name: 'home'}">
                 ST
@@ -79,5 +82,6 @@
     "nav-2"
     "theme";
 }
+
 
 </style>
