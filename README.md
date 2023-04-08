@@ -3,30 +3,27 @@ Tasktopus is a web application for managing tasks and to-do lists. With Tasktopu
 
 # Features
 Tasktopus offers the following features:
-
-Create new tasks with a title and description
-Set due dates and priorities for each task
-Mark tasks as completed when finished
-Filter tasks by priority or completion status
-Edit and delete existing tasks
-Responsive design for use on desktop and mobile devices
+- Create new tasks with a title and description
+- Set due dates and priorities for each task
+- Mark tasks as completed when finished
+- Filter tasks by priority or completion status
+- Edit and delete existing tasks
+- Responsive design for use on desktop and mobile devices
 
 # Technologies used
 Tasktopus is built using the following technologies:
-
-Vue.js for the frontend user interface
-Tailwind CSS for styling
-Express.js for the backend server
-MongoDB for the database
+- Vue.js for the frontend user interface
+- Tailwind CSS for styling
+- Express.js for the backend server
+- MongoDB for the database
 
 # Getting started
 To get started with Tasktopus, follow these steps:
-
-Clone the repository to your local machine using 'git clone https://github.com/Aine-dickson/Tasktopus.git'
-Navigate to the project directory using 'cd tasktopus'
-Install the required dependencies with 'npm install'
-Start the development server with 'npm run serve'
-Open your web browser and navigate to http://localhost:8080
+- Clone the repository to your local machine using 'git clone https://github.com/Aine-dickson/Tasktopus.git'
+- Navigate to the project directory using 'cd tasktopus'
+- Install the required dependencies with 'npm install'
+- Start the development server with 'npm run serve'
+- Open your web browser and navigate to http://localhost:8080
 
 # License
 Tasktopus is licensed under the MIT license. See LICENSE for more information.
