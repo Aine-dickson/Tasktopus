@@ -8,9 +8,34 @@ const routes = [
     children: [
       {
         path: '/',
-        name: 'home',
-        component: () => import('@/views/pages/home.vue')
-      }
+        name: 'overview',
+        component: () => import('@/views/pages/overview.vue')
+      },
+      {
+        path: '/project',
+        name: 'project',
+        component: () => import('@/views/pages/project.vue')
+      },
+      {
+        path: '/messages',
+        name: 'msg',
+        component: () => import('@/views/pages/messages.vue')
+      },
+      {
+        path: '/my-tasks',
+        name: 'mytasks',
+        component: () => import('@/views/pages/mytasks.vue')
+      },
+      {
+        path: '/notifications',
+        name: 'noti',
+        component: () => import('@/views/pages/notification.vue')
+      },
+      {
+        path: '/settings',
+        name: 'settings',
+        component: () => import('@/views/pages/settings.vue')
+      },
     ]
   },
 ]

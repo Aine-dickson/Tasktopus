@@ -1,11 +1,41 @@
 <template>
-    <header class="flex items-center h-full">
-        <div class="overlow-hidden rounded-lg border border-gray-200 h-8 flex flex-grow">
+    <header class="flex items-center h-full justify-between px-4">
+        <div class="logo-2">Logo</div>
+        <div class="overlow-hidden rounded-lg border border-gray-200 h-8 flex w-[90%]">
             <i class="fas fa-search"></i>
-            <input type="search" class="h-full focus:outline-none bg-transparent">
+            <input type="search" class="h-full flex-grow focus:outline-none bg-transparent">
         </div>
-        <div>
-            <span><i class="fas fa-bell"></i></span>
+        <div class="noti">
+            <span><i class="fas fa-bell">NOTI</i></span>
+        </div>
+        <div class="menu">
+            <span><i class="fas fa-bars">MENU</i></span>
         </div>
     </header>
 </template>
+
+<script>
+
+    export default {
+
+    }
+
+</script>
+
+<style>
+@media screen and (min-width: 640px) {
+    .logo-2{
+        display: none;
+    }
+}
+@media screen and (max-width: 485px) {
+    .noti{
+        display: none;
+    }
+}
+@media screen and (min-width: 485px) {
+    .menu{
+        display: none;
+    }
+}
+</style>

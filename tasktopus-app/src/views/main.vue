@@ -1,9 +1,9 @@
 <template>
-    <div class="app_container grid h-screen w-screen">
+    <div class="app_container grid h-screen w-screen dark:text-white dark:bg-gray-950">
         <section class="header border-b border-b-gray-500 h-full">
             <app_header/>
         </section>
-        <section class="nav h-full bg-gray-800">
+        <section class="nav h-full dark:bg-slate-900">
             <app_nav/>
         </section>
         <section class="main h-full">
@@ -71,7 +71,7 @@
 }
 @media screen and (min-width: 485px) {
     .app_container{
-        grid-template-columns: 10% 90%;
+        grid-template-columns: 13% 87%;
         grid-template-rows: 10% 90%;
         grid-template-areas: 
         "header header"

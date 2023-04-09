@@ -1,10 +1,22 @@
 <template>
     <aside class="side-container grid h-full">
         <section class="msg h-full">
-            <span>Recent messages</span>
+            <div class="flex justify-between p-4">
+                <span>Recent messages</span>
+                <span>See more...</span>
+            </div>
+            <div>
+
+            </div>
         </section>
         <section class="team h-full">
-            <span>Team members</span>
+            <div class="flex justify-between p-4">
+                <span>Team members</span>
+                <span>See more...</span>
+            </div>
+            <div>
+
+            </div>
         </section>
     </aside>
 </template>
