@@ -3,23 +3,23 @@
         <div class="text-center">
             <span class="font-bold text-xl">Create an Account</span>
         </div>
-        <form action="#" class="space-y-4">
+        <form action="#" class="space-y-4" @submit.prevent="formHandler">
             <div class="w-[90%] m-auto space-y-2">
                 <label for="userName" class="text-2xl">Name</label>
                 <div class="h-10 w-full rounded-md text-lg overflow-hidden">
-                    <input type="text" name="userName" id="userName" placeholder="Enter full names" class="border-2 border-gray-600 rounded-md h-full w-full p-1 focus:outline-blue-600 bg-transparent">
+                    <input v-model="userName" type="text" name="userName" id="userName" placeholder="Enter full names" class="border-2 border-gray-600 rounded-md h-full w-full p-1 focus:outline-blue-600 bg-transparent">
                 </div>
             </div>
             <div class="w-[90%] m-auto space-y-2">
                 <label for="userEmail" class="text-2xl">Email</label>
                 <div class="h-10 w-full rounded-md text-lg overflow-hidden">
-                    <input type="email" name="userEmail" id="userEmail" placeholder="Enter a valid email" class="border-2 border-gray-600 rounded-md h-full w-full p-1 focus:outline-blue-600 bg-transparent">
+                    <input v-model="userEmail" type="email" name="userEmail" id="userEmail" placeholder="Enter a valid email" class="border-2 border-gray-600 rounded-md h-full w-full p-1 focus:outline-blue-600 bg-transparent">
                 </div>
             </div>
             <div class="w-[90%] m-auto space-y-2">
                 <label for="userPassword" class="text-2xl">Password</label>
                 <div class="h-10 w-full rounded-md text-lg overflow-hidden">
-                    <input type="password" name="userPassword" id="userPassword" placeholder="Enter strong password" class="border-2 border-gray-600 rounded-md h-full w-full p-1 focus:outline-blue-600 bg-transparent">
+                    <input v-model="userPassword" type="password" name="userPassword" id="userPassword" placeholder="Enter strong password" class="border-2 border-gray-600 rounded-md h-full w-full p-1 focus:outline-blue-600 bg-transparent">
                 </div>
             </div>
             <button type="submit" class="bg-blue-500 text-white p-2 w-[90%] m-auto block rounded-[5rem]">Create Account</button>
@@ -37,14 +37,31 @@
 
 <script>
 
+    import { ref } from 'vue'
+    import { useStore } from 'vuex'
+
     export default {
         setup(){
+            const store = useStore()
+
+            const userName = ref('')
+            const userEmail = ref('')
+            const userPassword = ref('')
 
             const googleConnect = () => {
                 console.log("Loged in with google")
             }
+            const formHandler = () => {
+                let userObject = {
+                    userEmail: userEmail.value,
+                    userName: userName.value,
+                    userPassword: userPassword.value
+                }
+                console.log(userObject)
+                store.dispatch('signUp', userObject)
+            }
 
-            return { googleConnect }
+            return { googleConnect, formHandler, userName, userEmail, userPassword }
         }
     }
 
