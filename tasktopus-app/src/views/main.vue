@@ -6,7 +6,7 @@
         <section class="nav h-full dark:bg-slate-900">
             <app_nav/>
         </section>
-        <section class="main h-full">
+        <section class="main max-h-full min-h-full overflow-auto">
             <app_main/>
         </section>
         <section class="aside hidden sm:block border-l border-l-gray-500 h-full">
