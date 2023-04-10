@@ -1,0 +1,39 @@
+<template>
+    <section class="space-y-4">
+        <div class="text-center">
+            <span class="font-bold text-xl">Reset Password</span>
+        </div>
+        <form action="#" class="space-y-4">
+            <div class="w-[90%] m-auto space-y-2">
+                <label for="userEmail" class="text-2xl">Email</label>
+                <div class="h-10 w-full rounded-md text-lg overflow-hidden">
+                    <input type="email" name="userEmail" id="userEmail" placeholder="Enter a valid email" class="border-2 border-gray-600 rounded-md h-full w-full p-1 focus:outline-blue-600 bg-transparent">
+                </div>
+            </div>
+            <button type="submit" class="bg-blue-500 text-white p-2 w-[90%] m-auto block rounded-[5rem]">Reset Password</button>
+            <span class="block text-center">--------Or--------</span>
+            <button @click="googleConnect" class="border border-blue-500 rounded-[5rem] block w-[90%] m-auto p-2">Login with Google</button>
+        </form>
+        <div class="space-x-2 text-sm text-center">
+            <span>Do not have an account?</span>
+            <router-link :to="{name: 'signup'}">
+                <span class="text-lg text-blue-500">Sign up</span>
+            </router-link>
+        </div>
+    </section>
+</template>
+
+<script>
+
+    export default {
+        setup(){
+
+            const googleConnect = () => {
+                console.log("Loged in with google")
+            }
+
+            return { googleConnect }
+        }
+    }
+
+</script>

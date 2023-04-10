@@ -3,11 +3,33 @@ import { createRouter, createWebHistory } from 'vue-router'
 const routes = [
   {
     path: '/',
+    name: 'auth',
+    component: () => import('@/auth/auth.vue'),
+    children: [
+      {
+        path: '/login',
+        name: 'login',
+        component: () => import('@/auth/login.vue'),
+      },
+      {
+        path: '/signup',
+        name: 'signup',
+        component: () => import('@/auth/signup.vue'),
+      },
+      {
+        path: '/forgot password',
+        name: 'passwordManager',
+        component: () => import('@/auth/passwordManager.vue'),
+      },
+    ]
+  },
+  {
+    path: '/main',
     name: 'main',
     component: () => import('@/views/main.vue'),
     children: [
       {
-        path: '/',
+        path: '/home',
         name: 'overview',
         component: () => import('@/views/pages/overview.vue')
       },
