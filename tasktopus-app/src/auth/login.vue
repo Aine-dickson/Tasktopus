@@ -3,7 +3,7 @@
         <div class="text-center">
             <span class="font-bold text-xl">Login</span>
         </div>
-        <form action="#" class="space-y-4">
+        <form @submit.prevent="formHandler" action="#" class="space-y-4">
             <div class="w-[90%] m-auto space-y-2">
                 <label for="userEmail" class="text-2xl">Email</label>
                 <div class="h-10 w-full rounded-md text-lg overflow-hidden">
@@ -34,14 +34,40 @@
 
 <script>
 
+    import { ref } from 'vue'
+    import { useStore } from 'vuex'
+    import { useRouter } from 'vue-router'
+
     export default {
         setup(){
+            const store = useStore()
+            const router = useRouter()
+
+            const userEmail = ref('')
+            const userPassword = ref('')
 
             const googleConnect = () => {
                 console.log("Loged in with google")
             }
 
-            return { googleConnect }
+            const formHandler = async() => {
+                const userObject = {
+                    userEmail: userEmail.value,
+                    userPassword: userPassword.value
+                }
+                store.dispatch('userLogin', userObject)
+                .then(response => {
+                    if(response){
+                        router.push('/home')
+                    } else {
+                        console.log("Login failed")
+                    }
+                })
+                userEmail.value = ''
+                userPassword.value = ''
+            }
+
+            return { googleConnect, formHandler }
         }
     }
 

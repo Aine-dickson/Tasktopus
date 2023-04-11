@@ -39,10 +39,12 @@
 
     import { ref } from 'vue'
     import { useStore } from 'vuex'
+    import { useRouter } from 'vue-router'
 
     export default {
         setup(){
             const store = useStore()
+            const router = useRouter()
 
             const userName = ref('')
             const userEmail = ref('')
@@ -57,8 +59,17 @@
                     userName: userName.value,
                     userPassword: userPassword.value
                 }
-                console.log(userObject)
                 store.dispatch('signUp', userObject)
+                .then(response => {
+                    if (response) {
+                        router.push('/home')
+                    } else {
+                        console.log("Signup not successful")
+                    }
+                })
+                userEmail.value = ''
+                userName.value = ''
+                userPassword.value = ''
             }
 
             return { googleConnect, formHandler, userName, userEmail, userPassword }

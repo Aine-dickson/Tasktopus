@@ -51,7 +51,7 @@
                     <img src="@/../public/assets/images/profile.jpg" alt="profile-pic" class="h-full w-full object-fill">
                 </div>
                 <div class="lg:flex flex-col hidden">
-                    <span>Aine Dixon</span>
+                    <span>{{ user.userName }}</span>
                     <span>Manager</span>
                 </div>
             </div>
@@ -61,10 +61,16 @@
 
 <script>
 
+    import { useStore } from 'vuex';
+    import { computed } from 'vue';
+
     export default {
         setup(){
+            const store = useStore()
 
-            return {}
+            const user = computed(() => store.state.user)
+
+            return { user }
         }
     }
 
