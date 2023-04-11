@@ -55,7 +55,7 @@
                     userEmail: userEmail.value,
                     userPassword: userPassword.value
                 }
-                store.dispatch('userLogin', userObject)
+                store.dispatch('login', userObject)
                 .then(response => {
                     if(response){
                         router.push('/home')

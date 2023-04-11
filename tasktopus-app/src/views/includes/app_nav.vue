@@ -51,7 +51,7 @@
                     <img src="@/../public/assets/images/profile.jpg" alt="profile-pic" class="h-full w-full object-fill">
                 </div>
                 <div class="lg:flex flex-col hidden">
-                    <span>{{ user.userName }}</span>
+                    <span>{{ user.name }}</span>
                     <span>Manager</span>
                 </div>
             </div>
