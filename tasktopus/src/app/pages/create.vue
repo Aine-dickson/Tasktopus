@@ -27,9 +27,14 @@
 
 <script>
     import { ref } from 'vue';
+    import { useStore } from 'vuex';
+    import { useRouter } from 'vue-router'
 
     export default{
         setup(){
+            const store = useStore()
+            const router = useRouter()
+
             const formData = ref({
                 title: '',
                 category: '',
@@ -37,7 +42,10 @@
             })
 
             const create = () => {
-
+                store.dispatch('create', formData.value)
+                .then(() => {
+                    router.push('home')
+                })
             }
 
             return { formData, create }

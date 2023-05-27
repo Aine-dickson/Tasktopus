@@ -17,7 +17,7 @@ export default createStore({
     actions:{
         create: async({commit},task) => {
             try{
-                let response = await fetch('127.0.0.1:5500/create', {
+                let response = await fetch('localhost:1337', {
                     method: 'POST',
                     body: task
                 })

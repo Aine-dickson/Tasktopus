@@ -9,20 +9,26 @@
             Body:<br>
             {{ task.body }}
         </div>
+        <button @click="create">Create</button>
     </section>
 </template>
 
 <script>
     import { computed } from 'vue';
     import { useStore } from 'vuex';
+    import { useRouter } from 'vue-router';
 
     export default{
         setup(){
             const store = useStore()
+            const router = useRouter()
 
             const tasks = computed(() => store.state.tasks)
+            const create = () => {
+                router.push('create')
+            }
 
-            return { tasks }
+            return { tasks, create }
         }
     }
 </script>
