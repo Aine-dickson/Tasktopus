@@ -57,7 +57,3 @@ This project is licensed under the [MIT License](https://opensource.org/licenses
 ## Contact
 
 For any questions or inquiries, please reach out to us at support@tasktopus.com.
-
----
-
-Feel free to modify and expand upon this README template to provide more information specific to your project. Include any necessary installation instructions, usage guidelines, and contribution guidelines to foster a collaborative environment for Tasktopus development.
