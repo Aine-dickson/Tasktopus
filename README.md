@@ -18,7 +18,7 @@ Tasktopus is a powerful web application for managing tasks and to-do lists. It o
 
 ## Installation
 
-1. Clone the repository: `git clone https://github.com/yourusername/tasktopus.git`
+1. Clone the repository: `https://github.com/Aine-dickson/Tasktopus.git`
 2. Navigate to the project directory: `cd tasktopus`
 3. Install dependencies: `npm install`
 4. Configure the backend: Follow the instructions in the backend configuration file.
@@ -56,4 +56,4 @@ This project is licensed under the [MIT License](https://opensource.org/licenses
 
 ## Contact
 
-For any questions or inquiries, please reach out to us at support@tasktopus.com.
+For any questions or inquiries, please reach out to us at ainedixon01@gmail.com.
