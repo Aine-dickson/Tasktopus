@@ -2,6 +2,7 @@ import { createStore } from 'vuex'
 
 export default createStore({
     state:{
+        darkTheme: true,
         tasks: [],
 
     },
@@ -12,7 +13,9 @@ export default createStore({
         tasksPopulator(state, payload){
             state.tasks = payload
         },
-        
+        themeToggle(state){
+            state.darkTheme = !state.darkTheme
+        }
     },
     actions:{
         create: async({commit},task) => {

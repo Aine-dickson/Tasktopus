@@ -9,7 +9,7 @@
         </button> -->
         
         <aside id="separator-sidebar" class="h-full w-full" aria-label="Sidebar">
-            <div class="h-full px-1 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
+            <div class="h-full px-1 py-4 overflow-y-auto">
                 <ul class="space-y-2 font-medium">
                     <li>
                         <span v-if="nav_size == 'large'" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
