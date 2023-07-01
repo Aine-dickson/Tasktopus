@@ -1,5 +1,5 @@
 <template>
-    <section class="h-full overflow-y-auto">
+    <section class="h-full overflow-y-auto px-4 pt-2">
         <div class="flex items-center justify-between mb-4">
             <div>
                 <span>Project summary</span>
