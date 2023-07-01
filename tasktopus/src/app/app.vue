@@ -1,15 +1,15 @@
 <template>
-    <div ref="app_cont" class="app-container grid h-screen bg-slate-100 dark:bg-gray-800">
-        <header class="app-header h-full">
+    <div ref="app_cont" class="app-container grid h-screen bg-slate-100 dark:bg-gray-900 text-gray-900 dark:text-white">
+        <header class="app-header h-full hidden">
             <app_header/>
         </header>
-        <nav @mouseenter="navManager(true)" @mouseleave="navManager(false)" class="lg_app-nav h-full hidden sm:block overflow-hidden">
+        <nav @mouseenter="navManager(true)" @mouseleave="navManager(false)" class="lg_app-nav h-full hidden sm:block py-2 pl-1">
             <app_lg_aside :navSize="nav_size"/>
         </nav>
         <nav class="sm_app-nav h-full hidden">
             Small aside nav
         </nav>
-        <main class="app-main h-full bg-slate-50 p-4 dark:bg-gray-900">
+        <main class="app-main h-full bg-slate-50 pt-1 pl-1 dark:bg-gray-900">
             <app_main/>
         </main>
         <footer class="app-footer h-full sm:hidden">
@@ -23,7 +23,7 @@
 
     import app_lg_aside from './pages/includes/app_lg_aside.vue';
     import app_header from './pages/includes/app_header.vue';
-    import app_main from './pages/home/main.vue';
+    import app_main from './pages/includes/app_main.vue';
     import app_footer from './pages/includes/app_footer.vue'
 
     export default {
@@ -64,8 +64,8 @@
         .app-container {
             display: grid;
             grid-template-columns: 5% 95%;
-            grid-template-rows: 10% 90%;
-            grid-template-areas: "header header" "lg_aside main";
+            grid-template-rows: 100%;
+            grid-template-areas: "lg_aside main";
         }
     }
     .sm_app-nav {

@@ -6,7 +6,11 @@ const routes = [
     name: 'index',
     component: () => import('../app/app.vue'),
     children: [
-      
+      {
+        path: '/dashboard',
+        name: 'dashboard',
+        component: () => import('../app/pages/dashboard/dashboard.vue'),
+      }
     ]
   },
 ];
