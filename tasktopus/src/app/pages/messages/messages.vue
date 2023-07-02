@@ -1,7 +1,33 @@
 <template>
-    <section class="h-full px-1 pb-1">
+    <section class="h-full pb-1">
         <div v-if="selection" class="chat-screen h-full grid">
-            <ol class="chats relative ml-2 overflow-y-auto overflow-x-hidden">                  
+            <section class="chat-head h-full">
+                <div class="h-[90%] relative bg-white shadow-md dark:bg-gray-800">
+                    <div class="flex items-center justify-between p-1 space-x-2 md:space-x-4">
+                        <div class="w-full md:w-1/2 flex space-x-1">
+                            <img class="w-8 h-8 mr-3 rounded-full sm:mb-0" src="/docs/images/people/profile-picture-3.jpg" alt="profile image"/>
+                            <div class="flex flex-col">
+                                <span class="text-gray-300">@Group name</span>
+                                <div class="min-w-[2.8rem] mb-1 text-xs font-normal text-gray-400 sm:order-last sm:mb-0 flex space-x-2">
+                                    Group members
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex flex-shrink-0 w-full md:w-auto items-center md:space-x-3">
+                            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m16.344 12.168-1.4-1.4a1.98 1.98 0 0 0-2.8 0l-.7.7a1.98 1.98 0 0 1-2.8 0l-2.1-2.1a1.98 1.98 0 0 1 0-2.8l.7-.7a1.981 1.981 0 0 0 0-2.8l-1.4-1.4a1.828 1.828 0 0 0-2.8 0C-.638 5.323 1.1 9.542 4.78 13.22c3.68 3.678 7.9 5.418 11.564 1.752a1.828 1.828 0 0 0 0-2.804Z"/>
+                            </svg>
+                            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 14">
+                              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 1H2a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1Zm7 11-6-2V4l6-2v10Z"/>
+                            </svg>
+                            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 4 15">
+                              <path d="M3.5 1.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm0 6.041a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm0 5.959a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <ol class="chats px-1 relative ml-2 overflow-y-auto overflow-x-hidden">                  
                 <li class="mb-5 ml-8 w-full">            
                     <span class="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full left-0 ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900 overflow-hidden">
                         <img class="rounded-full shadow-lg" src="/assets/images/aine.jpg" alt="Bonnie image"/>
@@ -60,7 +86,7 @@
                     </div>
                 </li>
             </ol>
-            <form class="msg-form z-50">
+            <form class="msg-form px-1 z-50">
                 <label for="chat" class="sr-only">Your message</label>
                 <div class="flex items-center px-3 py-2 rounded-lg dark:bg-gray-800">
                     <button type="button" class="inline-flex justify-center p-2 text-gray-500 rounded-lg cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
@@ -79,7 +105,7 @@
                 </div>
             </form>
         </div>
-        <div v-else class="flex items-center justify-center h-full">
+        <div v-else class="px-1 flex items-center justify-center h-full">
             <div class="flex flex-col items-center">
                 <img src="https://flowbite.com/docs/images/logo.svg" alt="">
                 <div class="font-bold text-xl mb-2">Tasktopus Messenger</div>
@@ -104,13 +130,16 @@
 <style scoped>
     .chat-screen{
         grid-template-columns: 100%;
-        grid-template-rows: 90% 10%;
-        grid-template-areas: "chats" "form";
+        grid-template-rows: 10% 80% 10%;
+        grid-template-areas: "header" "chats" "form";
     }
     .chats{
         grid-area: chats;
     }
     .msg-form{
         grid-area: form;
+    }
+    .chat-head{
+        grid-area: header;
     }
 </style>
