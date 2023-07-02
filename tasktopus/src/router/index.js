@@ -19,7 +19,7 @@ const routes = [
       {
         path: '/messages',
         name: 'messages',
-        component: () => import('../app/pages/messages/main.vue')
+        component: () => import('../app/pages/messages/messages.vue')
       },
       {
         path: '/calendar',
@@ -34,11 +34,43 @@ const routes = [
       {
         path: '/profile',
         name: 'profile',
-        component: () => import('../app/pages/profile/main.vue')
+        component: () => import('../app/pages/profile/main.vue'),
+        children: [
+          {
+            path: ':id/general-info/',
+            name: 'general_info',
+            component: () => import('../app/pages/profile/general_info.vue')
+          },
+          {
+            path: ':id/timeline',
+            name: 'timeline',
+            component: () => import('../app/pages/profile/timeline.vue')
+          },
+          {
+            path: ':id/teams',
+            name: 'teams',
+            component: () => import('../app/pages/profile/teams.vue')
+          },
+          {
+            path: ':id/collabos',
+            name: 'collabos',
+            component: () => import('../app/pages/profile/collabos.vue')
+          },
+          {
+            path: ':id/projects',
+            name: 'projects',
+            component: () => import('../app/pages/profile/projects.vue')
+          },
+          {
+            path: ':id/daily-schedule',
+            name: 'schedule',
+            component: () => import('../app/pages/profile/daily_schedule.vue')
+          },
+        ]
       },
       {
         path: '/settings',
-        name: 'collabos',
+        name: 'settings',
         component: () => import('../app/pages/settings/main.vue')
       },
     ]

@@ -2,6 +2,7 @@ import { createStore } from 'vuex'
 
 export default createStore({
     state:{
+        specialPage: false,
         darkTheme: true,
         tasks: [],
 
@@ -15,6 +16,9 @@ export default createStore({
         },
         themeToggle(state){
             state.darkTheme = !state.darkTheme
+        },
+        pageTeller(state, payload){
+            state.specialPage = payload
         }
     },
     actions:{
