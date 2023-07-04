@@ -10,6 +10,13 @@ const routes = [
         path: '/',
         name: 'dashboard',
         component: () => import('../app/pages/dashboard/main.vue'),
+        children: [
+          {
+            path: '/create-new',
+            name: 'create_new',
+            component: () => import('../app/pages/dashboard/create_task.vue')
+          }
+        ]
       },
       {
         path: '/collaborations',

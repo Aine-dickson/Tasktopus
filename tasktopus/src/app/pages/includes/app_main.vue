@@ -8,7 +8,7 @@
                     </svg>
                     <input type="text" class="block w-full bg-transparent dark:placeholder-gray-400 h-full focus:outline-none" placeholder="Search tasks here...">
                 </div>
-                <div @click="router.push({name: 'notifications'})" class="relative dark:bg-gray-800 p-2 rounded-lg">
+                <div @click="router.push({name: 'noti'})" class="relative cursor-pointer dark:bg-gray-800 p-2 rounded-lg">
                     <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 14 20">
                       <path d="M12.133 10.632v-1.8A5.406 5.406 0 0 0 7.979 3.57.946.946 0 0 0 8 3.464V1.1a1 1 0 0 0-2 0v2.364a.946.946 0 0 0 .021.106 5.406 5.406 0 0 0-4.154 5.262v1.8C1.867 13.018 0 13.614 0 14.807 0 15.4 0 16 .538 16h12.924C14 16 14 15.4 14 14.807c0-1.193-1.867-1.789-1.867-4.175ZM3.823 17a3.453 3.453 0 0 0 6.354 0H3.823Z"/>
                     </svg>
@@ -24,38 +24,7 @@
         </section>
         <section class="aside grid h-full">
             <chats class="mgs h-full"/>
-            <section class="tasks h-full p-2">
-                <div class="flex justify-between items-start text-gray-600 dark:text-white">
-                    <div class="flex flex-col">
-                        <span>Today's tasks</span>
-                        <span class="text-xs text-gray-400">31st July 2023</span>
-                    </div>
-                    <span>see more...</span>
-                </div>
-                <div class="cursor-pointer max-w-sm p-2 mt-2 bg-slate-200 border border-slate-400 rounded-lg shadow dark:bg-slate-700 dark:border-slate-500">
-                    <div class="flex">
-                        <div>
-                            <span>Task title</span>
-                            <p class="text-xs text-gray-400">Task description</p>
-                        </div>
-                        <div class="hidden"></div>
-                    </div>
-                    <div class="mt-1 border-t border-t-slate-500 text-xs pt-2 flex justify-between items-center">
-                        <span>11:30</span>
-                        <div v-if="active < 4" class="flex -space-x-4">
-                            <img class="w-8 h-8 border-2 border-white rounded-full dark:border-gray-800" src="/docs/images/people/profile-picture-5.jpg" alt="">
-                            <img class="w-8 h-8 border-2 border-white rounded-full dark:border-gray-800" src="/docs/images/people/profile-picture-2.jpg" alt="">
-                            <img class="w-8 h-8 border-2 border-white rounded-full dark:border-gray-800" src="/docs/images/people/profile-picture-3.jpg" alt="">
-                        </div>
-                        <div v-else class="flex -space-x-4">
-                            <img class="w-8 h-8 border-2 border-white rounded-full dark:border-gray-800" src="/docs/images/people/profile-picture-5.jpg" alt="">
-                            <img class="w-8 h-8 border-2 border-white rounded-full dark:border-gray-800" src="/docs/images/people/profile-picture-2.jpg" alt="">
-                            <img class="w-8 h-8 border-2 border-white rounded-full dark:border-gray-800" src="/docs/images/people/profile-picture-3.jpg" alt="">
-                            <a class="flex items-center justify-center w-8 h-8 text-xs font-medium text-white bg-gray-700 border-2 border-white rounded-full hover:bg-gray-600 dark:border-gray-800" href="#">+99</a>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <daily_tasks class="tasks h-full p-2"/>
         </section>
     </main>
 </template>
@@ -66,10 +35,12 @@
     import { useStore } from 'vuex';
 
     import chats from '../messages/chats.vue';
+    import daily_tasks from '../dashboard/daily_tasks.vue';
 
     export default {
         components: {
-            chats
+            chats,
+            daily_tasks
         },
         setup(){
             const router = useRouter()
