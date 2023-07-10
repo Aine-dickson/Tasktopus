@@ -7,7 +7,7 @@
                     <img class="rounded-full shadow-lg" src="/assets/images/aine.jpg" alt="Bonnie image"/>
                 </span>
             </div>
-            <div class="text-sm font-medium text-center text-gray-500 dark:text-gray-400 items-center justify-between p-4 pl-32 pb-0 sm:flex bg-slate-50 border-b border-b-slate-300 shadow dark:bg-slate-800 dark:border-b-slate-600">
+            <div class="text-sm font-medium text-center text-gray-500 dark:text-gray-400 items-center justify-between p-4 pl-32 pb-0 sm:flex bg-white border-b border-b-slate-300 shadow-md dark:bg-slate-800 dark:border-b-slate-600">
                 <ul class="flex -mb-px overflow-x-auto items-baseline">
                     <li ref="defaultRoute" @click="[activate('general'), router.push({name: 'general_info', params: {id: 'Aine-dixon'}})]" class="mr-2 cursor-pointer">
                         <span v-if="active ==  'general'" href="#" class="inline-block p-4 text-blue-600 border-b-2 border-blue-600 rounded-t-lg active dark:text-blue-500 dark:border-blue-500" aria-current="page">General Info</span>

@@ -1,5 +1,5 @@
 <template>
-        <div class="h-full p-4 rounded-lg shadow sm:p-5">
+        <div class="h-full p-4 rounded-lg sm:p-5">
             <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
                 <button @click.prevent="" type="button" class="text-gray-400 text-sm p-1.5">
                     <svg class="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 8 14">
@@ -15,11 +15,11 @@
                     <section class="space-y-4">
                         <div>
                             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
-                            <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" required="">
+                            <input type="text" name="name" id="name" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" required="">
                         </div>
                         <div>
                             <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Type</label>
-                            <select id="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                            <select id="category" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                                 <option selected="">Select type</option>
                                 <option value="project">Project</option>
                                 <option value="task">Task</option>
@@ -27,7 +27,7 @@
                         </div>
                         <div>
                             <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Start date</label>
-                            <VueDatePicker :teleport-center="true"/>
+                            <VueDatePicker :teleport-center="true" :dark="true"/>
                         </div>
                         <div>
                             <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Collaboration</label>
@@ -53,21 +53,21 @@
                     <section class="h-full space-y-10">
                         <div class="h-[66%]">
                             <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
-                            <textarea id="description" rows="4" class="block p-2.5 w-full h-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Write product description here"></textarea>                    
+                            <textarea id="description" rows="4" class="block p-2.5 w-full h-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Write product description here"></textarea>                    
                         </div>
                         <div>
                             <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Reminder</label>
                             <div class="grid grid-cols-3 gap-2">
-                                <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <select id="countries" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     <option value="US">Notification</option>
                                     <option value="CA">EMAIL</option>
                                     <option value="FR">SMS</option>
                                     <option value="DE">Alarm</option>
                                 </select>
                                 <div>
-                                    <input type="number" id="default-input" value="1" class="max-w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <input type="number" id="default-input" value="1" class="max-w-full bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 </div>
-                                <select id="countries" class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <select id="countries" class=" bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     <option value="US" selected>Hours</option>
                                     <option value="CA">Days</option>
                                     <option value="FR">Weeks</option>
@@ -80,7 +80,7 @@
                         <button type="submit" class="text-white items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                             Add new {{  }}
                         </button>
-                        <button type="reset" class="text-white items-center bg-gray-600 hover:bg-gray-700 border border-gray-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                        <button type="reset" class="text-white items-center bg-gray-800 bg-opacity-70 dark:bg-gray-600 hover:bg-gray-700 border border-gray-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                             Discard
                         </button>
                     </div>
@@ -109,3 +109,14 @@
         }
     }
 </script>
+
+<style>
+    .dp__theme_dark {
+   --dp-background-color: rgb(55 65 81);
+   --dp-text-color: #ffffff;
+   --dp-hover-color: #484848;
+   --dp-border-color: #2d2d2d;
+   --dp-scroll-bar-background: #212121;
+   --dp-scroll-bar-color: #484848;
+}
+</style>
