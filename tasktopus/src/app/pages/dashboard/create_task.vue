@@ -15,19 +15,18 @@
                     <section class="space-y-4">
                         <div>
                             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
-                            <input type="text" name="name" id="name" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" required="">
+                            <input v-model="task.title" type="text" name="name" id="name" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Enter task title" required="">
                         </div>
                         <div>
                             <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Type</label>
-                            <select id="category" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                <option selected="">Select type</option>
+                            <select v-model="task.type" id="category" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                <option value="task" selected>Task</option>
                                 <option value="project">Project</option>
-                                <option value="task">Task</option>
                             </select>
                         </div>
                         <div>
                             <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Start date</label>
-                            <VueDatePicker :teleport-center="true" :dark="true"/>
+                            <VueDatePicker v-model="task.date" :teleport-center="true" :dark="true"/>
                         </div>
                         <div>
                             <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Collaboration</label>
@@ -53,32 +52,32 @@
                     <section class="h-full space-y-10">
                         <div class="h-[66%]">
                             <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
-                            <textarea id="description" rows="4" class="block p-2.5 w-full h-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Write product description here"></textarea>                    
+                            <textarea v-model="task.desc" id="description" rows="4" class="block p-2.5 w-full h-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Write product description here"></textarea>                    
                         </div>
                         <div>
                             <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Reminder</label>
                             <div class="grid grid-cols-3 gap-2">
-                                <select id="countries" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                    <option value="US">Notification</option>
-                                    <option value="CA">EMAIL</option>
-                                    <option value="FR">SMS</option>
-                                    <option value="DE">Alarm</option>
+                                <select v-model="task.reminder.type" id="countries" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <option value="notification" selected>Notification</option>
+                                    <option value="email">EMAIL</option>
+                                    <option value="sms">SMS</option>
+                                    <option value="alarm">Alarm</option>
                                 </select>
                                 <div>
-                                    <input type="number" id="default-input" value="1" class="max-w-full bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <input v-model="task.reminder.count" type="number" id="default-input" class="max-w-full bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 </div>
-                                <select id="countries" class=" bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                    <option value="US" selected>Hours</option>
-                                    <option value="CA">Days</option>
-                                    <option value="FR">Weeks</option>
-                                    <option value="DE">Months</option>
+                                <select v-model="task.reminder.timeUnit" id="countries" class=" bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <option value="hours" selected>Hours</option>
+                                    <option value="days">Days</option>
+                                    <option value="weeks">Weeks</option>
+                                    <option value="months">Months</option>
                                 </select>
                             </div>
                         </div>
                     </section>
                     <div class="grid grid-cols-2 gap-16 w-[95%] col-span-2 m-auto mt-4">
-                        <button type="submit" class="text-white items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                            Add new {{  }}
+                        <button @click.prevent="createTask" type="submit" class="text-white items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            Create
                         </button>
                         <button type="reset" class="text-white items-center bg-gray-800 bg-opacity-70 dark:bg-gray-600 hover:bg-gray-700 border border-gray-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                             Discard
@@ -94,7 +93,7 @@
     import '@vuepic/vue-datepicker/dist/main.css'
     import { ref } from 'vue';
     import { useRouter } from 'vue-router';
-
+    import { useStore } from 'vuex'
 
     export default {
         components: {
@@ -102,21 +101,47 @@
         },
         setup(){
             const router = useRouter()
+            const store = useStore()
 
             const date_picker = ref()
+            const task = ref({
+                title: '',
+                type: 'task',
+                desc: '',
+                contributors: [],
+                date: {
+                    start: '',
+                    due: ''
+                },
+                reminder: {
+                    type: 'notification',
+                    count: 1,
+                    timeUnit: 'hours'
+                }
+            })
 
-            return { date_picker, router }
+            const createTask = () => {
+                store.dispatch('createTask', task.value)
+                .then(() => {
+                    task.value = {title: '', type:'task', desc: '', date: { start: '', due: ''}, 
+                    contributors: [], reminder: {type: 'notification', count: 1, timeUnit: 'hours'}
+                    }
+                })
+            }
+
+            return { createTask, date_picker, router, task }
         }
     }
 </script>
 
 <style>
-    .dp__theme_dark {
+.dp__theme_dark {
    --dp-background-color: rgb(55 65 81);
    --dp-text-color: #ffffff;
    --dp-hover-color: #484848;
    --dp-border-color: #2d2d2d;
    --dp-scroll-bar-background: #212121;
    --dp-scroll-bar-color: #484848;
+   --dp-border-radius: 0.5rem;
 }
 </style>

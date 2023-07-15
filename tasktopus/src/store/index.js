@@ -1,3 +1,4 @@
+import axios from '../api/api'
 import { createStore } from 'vuex'
 
 export default createStore({
@@ -22,18 +23,10 @@ export default createStore({
         }
     },
     actions:{
-        create: async({commit},task) => {
+        createTask: async({commit},task) => {
             try{
-                let response = await fetch('localhost:1337', {
-                    method: 'POST',
-                    body: task
-                })
-                if(response.status != 200){
-                    throw new Error('Unable to add task')
-                } else {
-                    commit('tasksPopulator', response)
-                    console.log(response)
-                }
+                let response = await axios.post('/createTask')
+                console.log(response.data)
             } catch(error) {
                 console.log(error.message)
             }
