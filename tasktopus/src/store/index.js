@@ -6,7 +6,7 @@ export default createStore({
         specialPage: false,
         darkTheme: true,
         tasks: [],
-
+        chatType: ''
     },
     getters: {
 
@@ -20,6 +20,9 @@ export default createStore({
         },
         pageTeller(state, payload){
             state.specialPage = payload
+        },
+        chatDescriptor(state, payload){
+            state.chatType = payload
         }
     },
     actions:{

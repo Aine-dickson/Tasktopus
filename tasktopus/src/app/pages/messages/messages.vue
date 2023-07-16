@@ -7,8 +7,8 @@
                         <div class="w-full md:w-1/2 flex space-x-1">
                             <img class="w-8 h-8 mr-3 rounded-full sm:mb-0" src="/docs/images/people/profile-picture-3.jpg" alt="profile image"/>
                             <div class="flex flex-col">
-                                <span class="text-gray-300">@Group name</span>
-                                <div class="min-w-[2.8rem] mb-1 text-xs font-normal text-gray-400 sm:order-last sm:mb-0 flex space-x-2">
+                                <span class="text-gray-300">@{{ chat.title }}</span>
+                                <div v-if="chatType == 'group'" class="min-w-[2.8rem] mb-1 text-xs font-normal text-gray-400 sm:order-last sm:mb-0 flex space-x-2">
                                     Group members
                                 </div>
                             </div>
@@ -28,63 +28,68 @@
                 </div>
             </section>
             <ol class="chats px-1 relative ml-2 overflow-y-auto overflow-x-hidden">                  
-                <li class="mb-5 ml-8 w-full">            
-                    <span class="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full left-0 ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900 overflow-hidden">
-                        <img class="rounded-full shadow-lg" src="/assets/images/aine.jpg" alt="Bonnie image"/>
-                    </span>
-                    <div class="max-w-[80%] px-2 pb-2 bg-slate-200 border border-slate-400 rounded-lg shadow dark:bg-slate-700 dark:border-slate-500">
-                        <div>
-                            <div class="flex justify-between items-center">
-                                <div class="text-sm italic font-semibold text-gray-900 dark:text-white hover:underline cursor-pointer">@Thomas Lean</div>
-                                <time class="mb-1 text-xs font-normal text-gray-400 sm:order-last sm:mb-0">2 hours ago</time>
-                            </div>
-                            <div class="text-sm font-normal text-gray-500 dark:text-gray-300">Bonnie moved Leo to Funny Group</div>
-                        </div>
-                    </div>
-                </li>
-                <li class="mb-5 ml-8 w-full">            
-                    <span class="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full left-0 ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900 overflow-hidden">
-                        <img class="rounded-full shadow-lg" src="/assets/images/aine.jpg" alt="Bonnie image"/>
-                    </span>
-                    <div class="max-w-[80%] px-2 pb-2 bg-slate-200 border border-slate-400 rounded-lg shadow dark:bg-slate-700 dark:border-slate-500">
-                        <div>
-                            <div class="flex justify-between items-center">
-                                <div class="text-sm italic font-semibold text-gray-900 dark:text-white hover:underline cursor-pointer">@Thomas Lean</div>
-                                <time class="mb-1 text-xs font-normal text-gray-400 sm:order-last sm:mb-0">2 hours ago</time>
-                            </div>
-                            <div class="px-1 pb-2 text-xs italic rounded-lg font-normal text-gray-500 border-b border-b-gray-200 bg-slate-50 dark:bg-slate-600 dark:border-b-gray-500 dark:text-gray-300">
-                                <div class="items-center justify-between sm:flex p-1">
-                                    <div class="italic text-gray-900 dark:text-white hover:underline cursor-pointer">@Thomas Lean</div>
+                <article v-for="(msg, index) in chat.messages" :key="index">
+                    <li v-if="msg.author.type == 'foreign' && !msg.specific" class="mb-5 ml-8 w-full">            
+                        <span class="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full left-0 ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900 overflow-hidden">
+                            <img class="rounded-full shadow-lg" :src="msg.author.photo" alt="Bonnie image"/>
+                        </span>
+                        <div class="max-w-[80%] px-2 pb-2 bg-slate-200 border border-slate-400 rounded-lg shadow dark:bg-slate-700 dark:border-slate-500">
+                            <div>
+                                <div class="flex justify-between items-center">
+                                    <div class="text-sm italic font-semibold text-gray-900 dark:text-white hover:underline cursor-pointer">@{{ msg.author.name }}</div>
+                                    <time class="mb-1 text-xs font-normal text-gray-400 sm:order-last sm:mb-0">
+                                        {{ getTime(msg.sentAt) }}
+                                    </time>
                                 </div>
-                                <div class="bg-gray-800 p-1 rounded-b-lg">Hi ya'll! I wanted to share a webinar zeroheight is having regarding how to best measure your design system! This is the second session of our new webinar series on #DesignSystems discussions where we'll be speaking about Measurement.</div>
+                                <div class="text-sm font-normal text-gray-500 dark:text-gray-300">{{ msg.body }}</div>
                             </div>
-                            <div class="text-sm font-normal text-gray-500 dark:text-gray-300">Bonnie moved Leo to Funny Group</div>
                         </div>
-                    </div>
-                </li>
-                <li class="mb-5 w-full flex justify-end">            
-                    <div class="max-w-[80%] items-start justify-between p-2 sm:flex bg-slate-200 border border-slate-400 rounded-lg shadow dark:bg-slate-700 dark:border-slate-500">
-                        <time class="min-w-[2.8rem] block text-end mb-1 text-xs font-normal text-gray-400 sm:order-last sm:mb-0">just now</time>
-                        <div class="text-sm font-normal text-gray-500 dark:text-gray-300">Bonnie moved <a href="#" class="font-semibold text-blue-600 dark:text-blue-500 hover:underline">Jese Leos</a> to <span class="bg-gray-100 text-gray-800 text-xs font-normal mr-2 px-2.5 py-0.5 rounded dark:bg-gray-600 dark:text-gray-300">Funny Group</span></div>
-                    </div>
-                </li>
-                <li class="mb-5 w-full flex justify-end">            
-                    <div class="max-w-[80%] px-2 pb-2 bg-slate-200 border border-slate-400 rounded-lg shadow dark:bg-slate-700 dark:border-slate-500">
-                        <div>
-                            <div class="px-1 pb-2 text-xs italic rounded-b-lg font-normal text-gray-500 border-b border-b-gray-200 bg-slate-50 dark:bg-slate-600 dark:border-b-gray-500 dark:text-gray-300">
-                                <div class="items-center justify-between sm:flex p-1">
-                                    <div></div>
-                                    <div class="italic text-gray-900 dark:text-white hover:underline cursor-pointer">@Thomas Lean</div>
+                    </li>
+                    <li v-if="msg.author.type == 'foreign' && msg.specific" class="mb-5 ml-8 w-full">            
+                        <span class="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full left-0 ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900 overflow-hidden">
+                            <img class="rounded-full shadow-lg" :src="msg.author.photo" alt="Bonnie image"/>
+                        </span>
+                        <div class="max-w-[80%] px-2 pb-2 bg-slate-200 border border-slate-400 rounded-lg shadow dark:bg-slate-700 dark:border-slate-500">
+                            <div>
+                                <div class="flex justify-between items-center">
+                                    <div class="text-sm italic font-semibold text-gray-900 dark:text-white hover:underline cursor-pointer">@{{ msg.author.name }}</div>
+                                    <time class="mb-1 text-xs font-normal text-gray-400 sm:order-last sm:mb-0">{{ msg.sentAt }}</time>
                                 </div>
-                                <div class="bg-gray-800 p-1 rounded-b-lg">Hi ya'll! I wanted to share a webinar zeroheight is having regarding how to best measure your design system! This is the second session of our new webinar series on #DesignSystems discussions where we'll be speaking about Measurement.</div>
-                            </div>
-                            <div class="flex justify-between items-start">
-                                <div class="text-sm font-normal text-gray-500 dark:text-gray-300">Bonnie moved Leo to Funny Group</div>
-                                <time class="min-w-[2.8rem] block text-end mb-1 text-xs font-normal text-gray-400 sm:order-last sm:mb-0">just now</time>
+                                <div class="px-1 pb-2 text-xs italic rounded-lg font-normal text-gray-500 border-b border-b-gray-200 bg-slate-50 dark:bg-slate-600 dark:border-b-gray-500 dark:text-gray-300">
+                                    <div class="items-center justify-between sm:flex p-1">
+                                        <div class="italic text-gray-900 dark:text-white hover:underline cursor-pointer">@{{ msg.author.target.name }}</div>
+                                    </div>
+                                    <div class="bg-gray-800 p-1 rounded-b-lg">{{ msg.author.target.body }}</div>
+                                </div>
+                                <div class="text-sm font-normal text-gray-500 dark:text-gray-300">{{ msg.body }}</div>
                             </div>
                         </div>
-                    </div>
-                </li>
+                    </li>
+                    <li v-if="msg.author.type == 'self' && !msg.specific" class="mb-5 w-full flex justify-end">            
+                        <div class="max-w-[80%] items-start justify-between p-2 sm:flex bg-slate-200 border border-slate-400 rounded-lg shadow dark:bg-slate-700 dark:border-slate-500">
+                            <time class="min-w-[2.8rem] block text-end mb-1 text-xs font-normal text-gray-400 sm:order-last sm:mb-0">{{ msg.sentAt }}</time>
+                            <!-- <div class="text-sm font-normal text-gray-500 dark:text-gray-300">Bonnie moved <a href="#" class="font-semibold text-blue-600 dark:text-blue-500 hover:underline">Jese Leos</a> to <span class="bg-gray-100 text-gray-800 text-xs font-normal mr-2 px-2.5 py-0.5 rounded dark:bg-gray-600 dark:text-gray-300">Funny Group</span></div> -->
+                            <div class="text-sm font-normal text-gray-500 dark:text-gray-300">{{ msg.body }}</div>
+                        </div>
+                    </li>
+                    <li v-if="msg.author.type == 'self' && msg.specific" class="mb-5 w-full flex justify-end">            
+                        <div class="max-w-[80%] px-2 pb-2 bg-slate-200 border border-slate-400 rounded-lg shadow dark:bg-slate-700 dark:border-slate-500">
+                            <div>
+                                <div class="px-1 pb-2 text-xs italic rounded-b-lg font-normal text-gray-500 border-b border-b-gray-200 bg-slate-50 dark:bg-slate-600 dark:border-b-gray-500 dark:text-gray-300">
+                                    <div class="items-center justify-between sm:flex p-1">
+                                        <div></div>
+                                        <div class="italic text-gray-900 dark:text-white hover:underline cursor-pointer">@{{ msg.author.target.name }}</div>
+                                    </div>
+                                    <div class="bg-gray-800 p-1 rounded-b-lg">{{ msg.author.target.body }}</div>
+                                </div>
+                                <div class="flex justify-between items-start">
+                                    <div class="text-sm font-normal text-gray-500 dark:text-gray-300">{{ msg.body }}</div>
+                                    <time class="min-w-[2.8rem] block text-end mb-1 text-xs font-normal text-gray-400 sm:order-last sm:mb-0">{{ msg.sentAt }}</time>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </article>
             </ol>
             <form class="msg-form px-1 z-50">
                 <label for="chat" class="sr-only">Your message</label>
@@ -116,13 +121,97 @@
 </template>
 
 <script>
-    import { ref } from 'vue';
+    import { ref, onUpdated, onMounted, computed } from 'vue';
+    import { useRouter } from 'vue-router';
+    import { useStore } from 'vuex'
+    import axios from '@/api/api'
 
     export default {
         setup(){
-            const selection = ref(true)
+            const router = useRouter()
+            const store = useStore()
 
-            return { selection }
+            const chatType = computed(() => store.state.chatType)
+            const selection = ref(true)
+            const chat = ref({
+                title:'', 
+                messages: [
+                    {
+                        id: '1', specific: false, sentAt: '13:43',
+                        body: 'Hello, how is the going over there?',
+                        author: { type: 'foreign', photo: '/assets/images/aine.jpg', id: '123', name: 'Thomas Lean'}
+                    },
+                    {
+                        id: '1', specific: false, sentAt: '13:45',
+                        body: 'Nothing big, just here enjoying the village vibes',
+                        author: { type: 'self'}
+                    },
+                    {
+                        id: '1', specific: true, sentAt: '13:45',
+                        body: 'You are so lost, I was starting to think you had gone to USA',
+                        author: { type: 'foreign', photo: '/assets/images/aine.jpg',
+                        id: '123', name: 'Thomas Lean', target: {name: 'You', body: 'Nothing big, just here enjoying the village vibes'}}
+                    },
+                    {
+                        id: '1', specific: false, sentAt: '13:46',
+                        body: 'Whoever is willing to join super league for nex semester, inbox me',
+                        author: { type: 'foreign', photo: '/assets/images/aine.jpg', id: '122', name: 'Joel Fahad'}
+                    },
+                    {
+                        id: '1', specific: true, sentAt: '13:47',
+                        body: 'In all the countries, why USA! \t My dream country is France',
+                        author: { type: 'self', target: {name: 'Thomas Lean', 
+                        body: 'You are so lost, I was starting to think you had gone to USA'}}
+                    },
+                ]
+            })
+            const getTime = (time) => {
+                let timeLapse = ref();
+                let rawTime = time.split('')
+                let rawMinutes = new Array(), rawHour = new Array()
+                for(let x = 0; x < rawTime.length; x++){
+                    if(x < 2){
+                        rawHour[x] = rawTime[x]
+                    } else if(x >2 && x < 5){
+                        rawMinutes[x] = rawTime[x]
+                    }
+                }
+                let minutes = parseInt(rawMinutes.join(''))
+                let hour = parseInt(rawHour.join(''))
+                setInterval(()=>{
+                    let currentTime = new Date()
+                    if(currentTime.getHours()-hour == 0){
+                        if(currentTime.getMinutes()-minutes == 0){
+                            timeLapse.value = 'Just now'
+                        } else {
+                            timeLapse.value = (currentTime.getMinutes()-minutes) + " minutes ago"
+                        }
+                    } else if(currentTime.getHours()-hour > 0 && currentTime.getHours()-hour < 23){
+                        timeLapse.value = (currentTime.getHours()-hour) + " hours ago"
+                    } else {
+                        timeLapse.value = time
+                    }
+                }, 1000)
+                return timeLapse.value
+            }
+            const fetchMessages = async(id) => {
+                let response = await axios(`/messages/:${id}`)
+            }
+
+            onMounted(() => {
+                let id = router.currentRoute.value.params.id
+                // fetchMessages(id).then(() => {
+
+                // })
+            })
+            onUpdated(() => {
+                let id = router.currentRoute.value.params.id
+                // fetchMessages(id).then(() => {
+
+                // })
+            })
+
+            return { selection, getTime, chat, chatType }
         }
     }
 </script>

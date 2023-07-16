@@ -24,7 +24,7 @@ const routes = [
         component: () => import('../app/pages/collaborations/main.vue')
       },
       {
-        path: '/messages',
+        path: '/messages/:id',
         name: 'messages',
         component: () => import('../app/pages/messages/messages.vue')
       },
