@@ -12,11 +12,11 @@
             <nav class="nav h-full px-1 py-4 overflow-y-auto flex flex-col items-center w-full">
                 <ul @click="router.push('dashboard')" class="cursor-pointer">
                     <span v-if="nav_size == 'large'" class="flex items-center">
-                        <img src="https://flowbite.com/docs/images/logo.svg" class="h-6 w-6" alt="Taktopus Logo" />
+                        <img src="/assets/images/tasktopus-logo.png" class="h-10 w-10" alt="Taktopus Logo" />
                         <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Tasktopus</span>
                     </span>
                     <span v-else class="flex items-center">
-                        <img src="https://flowbite.com/docs/images/logo.svg" class="h-6 w-6" alt="Taktopus Logo" />
+                        <img src="/assets/images/tasktopus-logo.png" class="h-10 w-10" alt="Taktopus Logo" />
                     </span>
                 </ul>
                 <ul class="mt-2 font-medium border-t border-gray-200 dark:border-gray-700 w-full">

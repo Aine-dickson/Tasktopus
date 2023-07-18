@@ -28,8 +28,10 @@ export default createStore({
     actions:{
         createTask: async({commit},task) => {
             try{
-                let response = await axios.post('/createTask')
-                console.log(response.data)
+                axios.post('/createTask', task)
+                .then((response) => {
+                    console.log(response.data)
+                })
             } catch(error) {
                 console.log(error.message)
             }

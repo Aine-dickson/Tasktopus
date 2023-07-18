@@ -26,7 +26,7 @@
                         </div>
                         <div>
                             <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Start date</label>
-                            <VueDatePicker v-model="task.date" :teleport-center="true" :dark="true"/>
+                            <VueDatePicker v-model="task.start_date" :teleport-center="true" :dark="true"/>
                         </div>
                         <div>
                             <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Collaboration</label>
@@ -52,21 +52,21 @@
                     <section class="h-full space-y-10">
                         <div class="h-[66%]">
                             <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
-                            <textarea v-model="task.desc" id="description" rows="4" class="block p-2.5 w-full h-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Write product description here"></textarea>                    
+                            <textarea v-model="task.description" id="description" rows="4" class="block p-2.5 w-full h-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Write product description here"></textarea>                    
                         </div>
                         <div>
                             <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Reminder</label>
                             <div class="grid grid-cols-3 gap-2">
-                                <select v-model="task.reminder.type" id="countries" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <select id="countries" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     <option value="notification" selected>Notification</option>
                                     <option value="email">EMAIL</option>
                                     <option value="sms">SMS</option>
                                     <option value="alarm">Alarm</option>
                                 </select>
                                 <div>
-                                    <input v-model="task.reminder.count" type="number" id="default-input" class="max-w-full bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <input  type="number" id="default-input" class="max-w-full bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 </div>
-                                <select v-model="task.reminder.timeUnit" id="countries" class=" bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <select id="countries" class=" bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     <option value="hours" selected>Hours</option>
                                     <option value="days">Days</option>
                                     <option value="weeks">Weeks</option>
@@ -91,7 +91,8 @@
 <script>
     import VueDatePicker from '@vuepic/vue-datepicker'
     import '@vuepic/vue-datepicker/dist/main.css'
-    import { ref } from 'vue';
+    import axiosInstance from '../../../api/api';
+    import { ref, onMounted } from 'vue';
     import { useRouter } from 'vue-router';
     import { useStore } from 'vuex'
 
@@ -105,19 +106,18 @@
 
             const date_picker = ref()
             const task = ref({
-                title: '',
-                type: 'task',
-                desc: '',
-                contributors: [],
-                date: {
-                    start: '',
-                    due: ''
-                },
-                reminder: {
-                    type: 'notification',
-                    count: 1,
-                    timeUnit: 'hours'
-                }
+                title: '', type: 'task', description: '',
+                start_date: '',
+                // contributors: [],
+                // date: {
+                //     start: '',
+                //     due: ''
+                // },
+                // reminder: {
+                //     type: 'notification',
+                //     count: 1,
+                //     timeUnit: 'hours'
+                // }
             })
 
             const createTask = () => {
@@ -126,6 +126,9 @@
                     task.value = {title: '', type:'task', desc: '', date: { start: '', due: ''}, 
                     contributors: [], reminder: {type: 'notification', count: 1, timeUnit: 'hours'}
                     }
+                })
+                .then(() => {
+                    router.push({name: 'dashboard'})
                 })
             }
 
