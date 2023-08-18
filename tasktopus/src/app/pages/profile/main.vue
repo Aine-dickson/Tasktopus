@@ -45,12 +45,12 @@
 <script>
     import { ref, onMounted, onUnmounted } from 'vue';
     import { useRouter } from 'vue-router';
-    import { useStore } from 'vuex';
+    import { useApp } from '../../../store/appStore';
 
     export default {
         setup(){
             const router = useRouter()
-            const store = useStore()
+            const store = useApp()
 
             const active = ref('general')
             const defaultRoute = ref() 
@@ -60,11 +60,11 @@
             }
 
             onMounted(() => {
-                store.commit('pageTeller', true)
+                store.specialPage = true
                 defaultRoute.value.click()
             })
             onUnmounted(() => {
-                store.commit('pageTeller', false)
+                store.specialPage = false
             })
 
             return { activate, active, router, defaultRoute }

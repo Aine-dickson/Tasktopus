@@ -2,6 +2,28 @@ import { createRouter, createWebHistory } from "vue-router";
 
 const routes = [
   {
+    path: '/auth',
+    name: 'auth',
+    component: () => import('../app/auth/main.vue'),
+    children: [
+      {
+        path: '/create-account',
+        name: 'signup',
+        component: () => import('../app/auth/signup.vue')
+      },
+      {
+        path: '/login',
+        name: 'login',
+        component: () => import('../app/auth/login.vue')
+      },
+      {
+        path: '/reset-password',
+        name: 'forgot_password',
+        component: () => import('../app/auth/f_pass.vue')
+      }
+    ]
+  },
+  {
     path: '/',
     name: 'tasktopus',
     component: () => import('../app/app.vue'),

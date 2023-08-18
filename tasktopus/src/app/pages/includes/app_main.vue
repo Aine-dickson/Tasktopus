@@ -32,7 +32,7 @@
 <script>
     import { computed } from 'vue';
     import { useRouter } from 'vue-router';
-    import { useStore } from 'vuex';
+    import { useApp } from '../../../store/appStore';
 
     import chats from '../messages/chats.vue';
     import daily_tasks from '../dashboard/daily_tasks.vue';
@@ -44,10 +44,10 @@
         },
         setup(){
             const router = useRouter()
-            const store = useStore()
+            const store = useApp()
 
             const special = computed(() => {
-                return store.state.specialPage
+                return store.specialPage
             })
 
             return { router, special }

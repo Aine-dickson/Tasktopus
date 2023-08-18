@@ -1,41 +1,21 @@
-import axios from '../api/api'
-import { createStore } from 'vuex'
+// customStorage.js
+import CryptoJS from 'crypto-js';
 
-export default createStore({
-    state:{
-        specialPage: false,
-        darkTheme: true,
-        tasks: [],
-        chatType: ''
-    },
-    getters: {
+const encryptionKey = import.meta.env.VITE_APP_PERSISTENT_STATE_ENC_KEY;
 
-    },
-    mutations:{
-        tasksPopulator(state, payload){
-            state.tasks = payload
-        },
-        themeToggle(state){
-            state.darkTheme = !state.darkTheme
-        },
-        pageTeller(state, payload){
-            state.specialPage = payload
-        },
-        chatDescriptor(state, payload){
-            state.chatType = payload
-        }
-    },
-    actions:{
-        createTask: async({commit},task) => {
-            try{
-                axios.post('/createTask', task)
-                .then((response) => {
-                    console.log(response.data)
-                })
-            } catch(error) {
-                console.log(error.message)
-            }
-        },
-
+const customStorage = {
+  getItem(key) {
+    const encryptedData = sessionStorage.getItem(key);
+    if (encryptedData) {
+      const decryptedData = CryptoJS.AES.decrypt(encryptedData, encryptionKey).toString(CryptoJS.enc.Utf8);
+      return decryptedData;
     }
-})
+    return null;
+  },
+  setItem(key, value) {
+    const encryptedData = CryptoJS.AES.encrypt(value, encryptionKey).toString();
+    sessionStorage.setItem(key, encryptedData);
+  },
+};
+
+export default customStorage;

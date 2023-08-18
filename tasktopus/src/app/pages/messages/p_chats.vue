@@ -18,12 +18,12 @@
 
 <script>
     import { onBeforeMount, ref } from 'vue';
-    import { useStore } from 'vuex';
-    import axios from "@/api/api"
+    import { useMessenger } from '../../../store/messengerStore';
+    import api from '../../../api';
 
     export default {
         setup(){
-            const store = useStore()
+            const store = useMessenger()
 
             const chats = ref([
                 {   id: '121', owner: 'Di Octopus',
@@ -34,11 +34,11 @@
                 },
             ])
 
-            const fetchChats = async() => {
-                let response = await axios('/p-chats')
-            }
+            // const fetchChats = async() => {
+            //     try
+            // }
             const reportChat = () => {
-                store.commit('chatDescriptor', 'private')
+                store.chatType = 'private'
             }
 
             onBeforeMount(() => {

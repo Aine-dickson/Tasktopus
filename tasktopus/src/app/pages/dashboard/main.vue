@@ -13,7 +13,7 @@
                 Add new
             </button>
         </div>
-        <div class="grid grid-cols-3 gap-4 h-[40%]">
+        <div class="grid grid-cols-3 gap-4 h-[40%] mb-8">
             <div class="max-w-sm cursor-pointer h-full flex flex-col justify-between p-6 border border-purple-700 rounded-lg bg-gradient-to-br from-purple-900 hover:from-purple-800 via-purple-800 hover:via-purple-700 to-purple-700 hover:to-purple-600 hover:bg-gradient-to-br shadow-lg shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80">
                 <div>
                     <div class="p-2 rounded-lg bg-slate-800 bg-opacity-40 inline-flex">
@@ -57,8 +57,8 @@
                 </div>
             </div>
         </div>
-        <div class="mt-8">
-            <nav class="static top-0 w-full bg-white border-t border-x border-gray-200 rounded-t-3xl dark:bg-slate-800 dark:border-gray-800">
+        <div class="relative">
+            <nav class="sticky -top-2 z-30 w-full bg-white border-t border-x border-gray-200 rounded-t-3xl dark:bg-slate-800 dark:border-gray-800">
                 <div class="flex flex-col items-center justify-between p-4 space-y-3 md:flex-row md:space-y-0 md:space-x-4">
                     <div class="w-full md:w-1/2">
                         <form class="flex items-center">
@@ -159,41 +159,73 @@
                     </div>
                 </div>
             </nav>
-            <div class="h-auto border-x border-x-slate-800 p-2 px-4">
-                <article class="max-w-sm p-2 mt-2 cursor-pointer bg-slate-200 border border-slate-400 rounded-lg shadow dark:bg-slate-700 dark:hover:bg-slate-600 dark:border-slate-500">
-                    <div class="flex justify-between items-start">
-                        <div class="flex space-x-1 items-start">
-                            <img v-if="taskProfile" class="w-12 h-12 rounded-full" src="/assets/images/aine.jpg" alt="Default avatar">
-                            <div v-else class="relative w-12 h-12 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
-                                <svg class="absolute w-14 h-14 text-gray-400 -left-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
-                            </div>
-                            <div>
-                                <span>Task name</span>
-                                <p class="text-xs text-gray-400">Task description</p>
-                            </div>
+            <div class="h-auto grid grid-cols-2 gap-4 border-x border-x-slate-800 p-2 px-4">
+                <article v-for="(task, index) in tasks" :key="index" class="w-full p-3 mt-2 bg-slate-200 border border-slate-400 rounded-lg shadow dark:bg-slate-700 dark:border-slate-500">
+                    <div class="flex justify-between p-4">
+                        <div class="p-2 rounded-lg bg-slate-800 bg-opacity-40 inline-flex">
+                            <svg v-if="status == 'pending'" class="w-6 h-6 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"/>
+                            </svg>
+                            <svg v-if="status == 'progress'" class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 16">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1v14h16M4 10l3-4 4 4 5-5m0 0h-3.207M16 5v3.207"/>
+                            </svg>
+                            <svg v-if="status == 'completed'" class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 21 21">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m6.072 10.072 2 2 6-4m3.586 4.314.9-.9a2 2 0 0 0 0-2.828l-.9-.9a2 2 0 0 1-.586-1.414V5.072a2 2 0 0 0-2-2H13.8a2 2 0 0 1-1.414-.586l-.9-.9a2 2 0 0 0-2.828 0l-.9.9a2 2 0 0 1-1.414.586H5.072a2 2 0 0 0-2 2v1.272a2 2 0 0 1-.586 1.414l-.9.9a2 2 0 0 0 0 2.828l.9.9a2 2 0 0 1 .586 1.414v1.272a2 2 0 0 0 2 2h1.272a2 2 0 0 1 1.414.586l.9.9a2 2 0 0 0 2.828 0l.9-.9a2 2 0 0 1 1.414-.586h1.272a2 2 0 0 0 2-2V13.8a2 2 0 0 1 .586-1.414Z"/>
+                            </svg>
                         </div>
-                        <svg v-if="status == 'pending'" class="w-6 h-6 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"/>
-                        </svg>
-                        <svg v-if="status == 'progress'" class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 16">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1v14h16M4 10l3-4 4 4 5-5m0 0h-3.207M16 5v3.207"/>
-                        </svg>
-                        <svg v-if="status == 'completed'" class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 21 21">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m6.072 10.072 2 2 6-4m3.586 4.314.9-.9a2 2 0 0 0 0-2.828l-.9-.9a2 2 0 0 1-.586-1.414V5.072a2 2 0 0 0-2-2H13.8a2 2 0 0 1-1.414-.586l-.9-.9a2 2 0 0 0-2.828 0l-.9.9a2 2 0 0 1-1.414.586H5.072a2 2 0 0 0-2 2v1.272a2 2 0 0 1-.586 1.414l-.9.9a2 2 0 0 0 0 2.828l.9.9a2 2 0 0 1 .586 1.414v1.272a2 2 0 0 0 2 2h1.272a2 2 0 0 1 1.414.586l.9.9a2 2 0 0 0 2.828 0l.9-.9a2 2 0 0 1 1.414-.586h1.272a2 2 0 0 0 2-2V13.8a2 2 0 0 1 .586-1.414Z"/>
-                        </svg>
+                        <button :id="task.id+'dropdown'" :data-dropdown-toggle="'dashTask'+task.id" class="inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1.5" type="button">
+                            <span class="sr-only">Open dropdown</span>
+                            <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 3">
+                                <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z"/>
+                            </svg>
+                        </button>
+                        <!-- Dropdown menu -->
+                        <div :id="'dashTask'+task.id" class="z-10 hidden text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                            <ul class="py-2" :aria-labelledby="task.id+'dropdown'">
+                                <li>
+                                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Edit</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Preview</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Disable</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Mark as finished</a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="mt-2 border-t border-t-slate-500 text-sm pt-2 flex justify-between items-center">
-                        <div class="flex flex-col items-center">
-                            <span>Created on:</span>
-                            <span class="text-gray-400">Date</span>
+                    <div class="flex justify-between items-start">
+                        <div class="max-w-[80%]">
+                            <div class="font-bold text-2xl my-2">{{ task.title }}</div>
+                            <p class="text-sm text-gray-400 self-start">{{ task.description }}</p>
                         </div>
-                        <div class="flex flex-col items-center">
-                            <span>No. Participants:</span>
+                        <img v-if="taskProfile" class="w-12 h-12 rounded-full" src="/assets/images/aine.jpg" alt="Default avatar">
+                        <div v-else class="relative w-12 h-12 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+                            <svg class="absolute w-14 h-14 text-gray-400 -left-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+                        </div>
+                    </div>
+                    <div class="mt-2 grid gap-2 grid-cols-2 border-t border-t-slate-500 text-sm pt-2">
+                        <div class="flex flex-col">
+                            <span>Status:</span>
+                            <span class="text-gray-400">Pending</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <span>No. collaborators:</span>
                             <span class="text-gray-400">34</span>
                         </div>
-                        <span class="flex flex-col items-center">
+                        <div class="flex flex-col">
+                            <span>Created on:</span>
+                            <span class="text-gray-400">{{ task.created_at }}</span>
+                        </div>
+                        <span class="flex flex-col">
                             <span>Last modified on:</span>
-                            <span class="text-gray-400">Date</span>
+                            <span class="text-gray-400">{{ task.updated_at }}</span>
                         </span>
                     </div>
                 </article>
@@ -209,7 +241,7 @@
     import { ref, onMounted } from 'vue';
     import { useRouter } from 'vue-router';
     import { initFlowbite } from 'flowbite';
-    import axiosInstance from '../../../api/api';
+    import api from '../../../api/index';
 
     export default{
         setup(){
@@ -218,13 +250,14 @@
             const selected = ref([])
             const block_display = ref(true)
             const tasks = ref([])
+            const status = "pending"
 
             const switchDisplay = (value) => {
                 block_display.value = value
             }
 
             const fetchTasks = async() => {
-                axiosInstance.post('/pullTasks')
+                api.post('/pullTasks')
                 .then(response => {
                     console.log(response.data)
                     tasks.value = response.data
@@ -236,7 +269,7 @@
                 fetchTasks()
             })
 
-            return { switchDisplay, router, block_display, tasks, selected }
+            return { switchDisplay, router, block_display, tasks, selected, status }
         }
     }
 </script>

@@ -123,15 +123,15 @@
 <script>
     import { ref, onUpdated, onMounted, computed } from 'vue';
     import { useRouter } from 'vue-router';
-    import { useStore } from 'vuex'
-    import axios from '@/api/api'
+    import { useMessenger } from '../../../store/messengerStore';
+    import api from '../../../api';
 
     export default {
         setup(){
             const router = useRouter()
-            const store = useStore()
+            const store = useMessenger()
 
-            const chatType = computed(() => store.state.chatType)
+            const chatType = computed(() => store.chatType)
             const selection = ref(true)
             const chat = ref({
                 title:'', 

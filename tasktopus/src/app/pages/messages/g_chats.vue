@@ -18,12 +18,12 @@
 
 <script>
     import { onBeforeMount, ref } from 'vue';
-    import { useStore } from 'vuex';
-    import axios from "@/api/api"
-
+    import { useMessenger } from '../../../store/messengerStore'
+    import api from '../../../api';
+    
     export default {
         setup(){
-            const store = useStore()
+            const store = useMessenger()
 
             const chats = ref([
                 {   id: '123', name: 'JHS OBs & OGs', sentAt: '12:24',
@@ -35,10 +35,10 @@
             ])
 
             const fetchChats = async() => {
-                let response = await axios('/g-chats')
+                let response = await api.post('')
             }
             const reportChat = () => {
-                store.commit('chatDescriptor', 'group')
+                store.chatType = 'group'
             }
 
             onBeforeMount(() => {

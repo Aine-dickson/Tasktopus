@@ -91,10 +91,10 @@
 <script>
     import VueDatePicker from '@vuepic/vue-datepicker'
     import '@vuepic/vue-datepicker/dist/main.css'
-    import axiosInstance from '../../../api/api';
+    import api from '../../../api/api';
     import { ref, onMounted } from 'vue';
     import { useRouter } from 'vue-router';
-    import { useStore } from 'vuex'
+    import { useTasks } from '../../../store/taskStore';
 
     export default {
         components: {
@@ -102,7 +102,7 @@
         },
         setup(){
             const router = useRouter()
-            const store = useStore()
+            const store = useTasks()
 
             const date_picker = ref()
             const task = ref({
@@ -121,7 +121,7 @@
             })
 
             const createTask = () => {
-                store.dispatch('createTask', task.value)
+                store.create()
                 .then(() => {
                     task.value = {title: '', type:'task', desc: '', date: { start: '', due: ''}, 
                     contributors: [], reminder: {type: 'notification', count: 1, timeUnit: 'hours'}
