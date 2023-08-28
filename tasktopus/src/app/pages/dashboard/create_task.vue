@@ -91,7 +91,7 @@
 <script>
     import VueDatePicker from '@vuepic/vue-datepicker'
     import '@vuepic/vue-datepicker/dist/main.css'
-    import api from '../../../api/api';
+    import api from '../../../api/index'
     import { ref, onMounted } from 'vue';
     import { useRouter } from 'vue-router';
     import { useTasks } from '../../../store/taskStore';
@@ -120,16 +120,33 @@
                 // }
             })
 
-            const createTask = () => {
-                store.create()
-                .then(() => {
-                    task.value = {title: '', type:'task', desc: '', date: { start: '', due: ''}, 
-                    contributors: [], reminder: {type: 'notification', count: 1, timeUnit: 'hours'}
+            const createTask = async () => {
+                const data = new FormData()
+                data.append('title', task.value.title)
+                data.append('description', task.value.description)
+                data.append('type', task.value.type)
+                data.append('startDate', task.value.start_date)
+                try{
+                    await store.create(data)
+                    task.value = {
+                        title: '', type: 'task', description: '',
+                        start_date: '',
+                        // contributors: [],
+                        // date: {
+                        //     start: '',
+                        //     due: ''
+                        // },
+                        // reminder: {
+                        //     type: 'notification',
+                        //     count: 1,
+                        //     timeUnit: 'hours'
+                        // }
                     }
-                })
-                .then(() => {
                     router.push({name: 'dashboard'})
-                })
+                } catch(error){
+                    console.log(error)
+                }
+                
             }
 
             return { createTask, date_picker, router, task }

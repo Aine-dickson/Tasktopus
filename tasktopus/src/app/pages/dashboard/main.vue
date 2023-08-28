@@ -36,7 +36,7 @@
                         </svg>
                     </div>
                 </div>
-                <h5 class="text-2xl font-bold tracking-tight">15</h5>
+                <h5 class="text-2xl font-bold tracking-tight">0</h5>
                 <div class="inline-flex justify-between text-xl w-full items-center font-medium text-center text-white">
                     In progress
                     <svg aria-hidden="true" class="w-12 h-10 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
@@ -50,7 +50,7 @@
                         </svg>
                     </div>
                 </div>
-                <h5 class="text-2xl font-bold tracking-tight">23</h5>
+                <h5 class="text-2xl font-bold tracking-tight">0</h5>
                 <div class="inline-flex justify-between text-xl w-full items-center font-medium text-center text-white">
                     Completed
                     <svg aria-hidden="true" class="w-12 h-10 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
@@ -213,19 +213,19 @@
                     <div class="mt-2 grid gap-2 grid-cols-2 border-t border-t-slate-500 text-sm pt-2">
                         <div class="flex flex-col">
                             <span>Status:</span>
-                            <span class="text-gray-400">Pending</span>
+                            <span class="text-gray-400">{{ task.status }}</span>
                         </div>
                         <div class="flex flex-col">
                             <span>No. collaborators:</span>
-                            <span class="text-gray-400">34</span>
+                            <span class="text-gray-400">0</span>
                         </div>
                         <div class="flex flex-col">
                             <span>Created on:</span>
-                            <span class="text-gray-400">{{ task.created_at }}</span>
+                            <span class="text-gray-400">{{ task.createdAt }}</span>
                         </div>
                         <span class="flex flex-col">
                             <span>Last modified on:</span>
-                            <span class="text-gray-400">{{ task.updated_at }}</span>
+                            <span class="text-gray-400">{{ task.updatedAt }}</span>
                         </span>
                     </div>
                 </article>
@@ -238,18 +238,21 @@
 </template>
 
 <script>
-    import { ref, onMounted } from 'vue';
+    import { ref, onMounted, computed } from 'vue';
     import { useRouter } from 'vue-router';
     import { initFlowbite } from 'flowbite';
-    import api from '../../../api/index';
+    import { useTasks } from '../../../store/taskStore';
 
     export default{
         setup(){
             const router = useRouter()
+            const taskStore = useTasks()
 
             const selected = ref([])
             const block_display = ref(true)
-            const tasks = ref([])
+            const tasks = computed(() => {
+                return taskStore.tasks
+            })
             const status = "pending"
 
             const switchDisplay = (value) => {
@@ -257,16 +260,18 @@
             }
 
             const fetchTasks = async() => {
-                api.post('/pullTasks')
-                .then(response => {
-                    console.log(response.data)
-                    tasks.value = response.data
-                })
+                try{
+                    let response = await taskStore.fetch('all')
+                    console.log(response)
+                    // tasks.value = response
+                } catch(error){
+                    console.log(error)
+                }
             }
 
             onMounted(() => {
                 initFlowbite()
-                fetchTasks()
+                // fetchTasks()
             })
 
             return { switchDisplay, router, block_display, tasks, selected, status }

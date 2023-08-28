@@ -1,7 +1,7 @@
 // customStorage.js
 import CryptoJS from 'crypto-js';
 
-const encryptionKey = import.meta.env.VITE_APP_PERSISTENT_STATE_ENC_KEY;
+const encryptionKey = import.meta.env.VITE_APP_STATE_ENC_KEY;
 
 const customStorage = {
   getItem(key) {

@@ -137,8 +137,8 @@
                             </div>
                             <div class="flex items-center justify-between ml-4">
                                 <div>
-                                    <span>User name</span>
-                                    <p class="text-xs text-gray-400">User about</p>
+                                    <span>{{ user.name }}</span>
+                                    <p class="text-xs text-gray-400">{{ user.email }}</p>
                                 </div>
                             </div>
                         </span>
@@ -159,6 +159,7 @@
     import { computed, ref, onMounted } from 'vue';
     import { useRouter } from 'vue-router';
     import { initFlowbite } from 'flowbite';
+    import { useAccount } from '../../../store/accountStore';
 
     export default{
         props:[
@@ -166,6 +167,11 @@
         ],
         setup(props){
             const router = useRouter()
+            const account = useAccount()
+
+            const user = computed(() => {
+                return account.user
+            })
             const toggled = ref(false)
             const theme = ref(true)
 
@@ -193,7 +199,7 @@
                 initFlowbite()
             })
 
-            return { nav_size, toggle, toggleTheme, router, toggled, theme }
+            return { nav_size, toggle, toggleTheme, router, toggled, theme, user }
         }
     }
 
