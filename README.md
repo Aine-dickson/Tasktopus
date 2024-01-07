@@ -51,7 +51,7 @@ This project is licensed under the [MIT License](https://opensource.org/licenses
 ## Acknowledgements
 
 - [Vue.js](https://vuejs.org/) - JavaScript framework for the frontend.
-- [Laravel](https://laravel.com/) - PHP framework for the backend.
+- [Nestjs](https://docs.nestjs.com/) - Nodejs framework for the backend.
 - [Flowbite](https://flowbite.com/) - Tailwind CSS components for the frontend.
 
 ## Contact
